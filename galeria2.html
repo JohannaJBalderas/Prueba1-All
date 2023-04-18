@@ -1,0 +1,199 @@
+<html>
+  <head>
+   <meta charset="utf-8">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="js/animation-mixer.js"> </script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+    <script>
+		AFRAME.registerComponent('play-pause', {
+			init: function () {
+				var myVideo = document.querySelector('#pionero');
+				var videoControls = document.querySelector('#videoControls');
+				this.el.addEventListener('click', function () {
+					if (myVideo.paused) {
+						myVideo.play();
+						videoControls.setAttribute('src', '#pause');
+					} else {
+						myVideo.pause();
+						videoControls.setAttribute('src', '#play');
+					}
+				});
+			}
+		});
+	</script>
+    <script>
+		AFRAME.registerComponent('play-pause2', {
+			init: function () {
+				var myVideo = document.querySelector('#pionero2');
+				var videoControls = document.querySelector('#videoControls2');
+				this.el.addEventListener('click', function () {
+					if (myVideo.paused) {
+						myVideo.play();
+						videoControls.setAttribute('src', '#pause2');
+					} else {
+						myVideo.pause();
+						videoControls.setAttribute('src', '#play2');
+					}
+				});
+			}
+		});
+	</script>
+  </head>
+  <body>
+      <a-scene inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+        <!--ASSETS IMAGENES-->
+        <a-asset>
+           <!--ASSETS IMAGENES-->
+            <!--ESCENARIO-->
+            <img src="img/pared3.jpg" id="pared3">
+            <img src="img/madera1.jpg" id="piso4">
+            <img src="img/pared4.jpg" id="pared4">
+            <!--BOTONES-->
+            <img src="img/botones/btn-video.png" id="play">
+            <img src="img/botones/btn_pause.png" id="pause">
+            <img src="img/botones/btn-video2.png" id="play2">
+            <img src="img/botones/btn_pause2.png" id="pause2">
+            <img src="img/botones/btn-violentometro.png" id="btnViolentometro">
+            <img src="img/botones/btn-victima.png" id="btnVictima">
+            <img src="img/botones/btn-complice.png" id="btnComplice">
+            <img src="img/botones/btn-agresor.png" id="btnAgresor">
+            <img src="img/botones/btn-tips.png" id="btnTips">
+            <img src="img/botones/btn-galeria2.png" id="galeria2">
+            <img src="img/botones/btn-home2.png" id="home">
+            <!--INFOGRAFIAS, TIPS & OTROS-->
+            <img src="img/victima2.png" id="victima">
+            <img src="img/complice2.png" id="complice">
+            <img src="img/agresor.jpg" id="agresor">
+            <img src="img/autocuidado.png" id="autocuidado">
+            <img src="img/portada_DG.jpg" id="defensoras">
+            <!--TITULOS-->
+            <img src="img/titulos/01_vd.png" id="01-qvd">
+            <img src="img/titulos/02_vv.png" id="02-vv">
+            <img src="img/titulos/03_info.png" id="03-info">
+            <img src="img/titulos/04_cc.png" id="04-cc">
+            <img src="img/titulos/tt-cd.png" id="05-cd">
+            <img src="img/titulos/06_vdm.png" id="06-vdm">
+            <img src="img/titulos/frase.png" id="frase">
+           <!--ASSETS VIDEOS-->
+            <video src="video/QueEs.mp4" id="pionero" loop="true"></video>
+            <video src="video/QueHacer.mp4" id="pionero2" loop="true"></video>
+           <!--ASSETS MODELOS 3D-->
+            <a-asset-item src="3D/viol1.glb" id="viol"></a-asset-item>
+            <a-asset-item src="3D/viol6.glb" id="text"></a-asset-item>
+        </a-asset>
+        
+        <!--CAMARA-->
+        <a-entity position="0 4 0" rotation="0 35 0">
+            <a-camera>
+<!--                <a-cursor material="color:#000000"></a-cursor>-->
+                   <a-entity cursor position="0 0 -1" geometry="primitive: sphere; radius: 0.015" material="color:#000; shader:flat; opacity:0.5"></a-entity>
+            </a-camera>
+        </a-entity>
+
+         <!--PLANO Y SKY-->
+<!--        <a-sky material="src:#pared3;repeat:6 25 0" rotation="0 -80 0" radius="35" ></a-sky>-->
+        <a-sky material="src:#pared4;repeat:6 10 0" rotation="0 -80 0" radius="35" ></a-sky>
+        <a-plane position="0 0 0" rotation="-90 0 0" scale="1000 1000 1" 
+                    material="src:#piso4;repeat:100 100 1; shader:flat;">
+        </a-plane>
+         <!--BOTON HOME-->
+          <a-image src="#home" position="-25 20 -10" rotation="0 75 0" scale="4 4 1" 
+                   link="href: index_edit.html; tittle: Defensoras"></a-image>
+        
+        <!--¿QUÉ ES LA VIOLENCIA DIGITAL-->
+          <!--VIDEO-->
+          <a-video src="#pionero" width="16" height="9" position="-17 10 -21" rotation="0 35 0">
+			<!-- Play/Pause -->
+			<a-image id="videoControls" src="#play" position="0 -7 -5" rotation="0 0 0" scale="6 6 1" play-pause></a-image>
+		  </a-video>
+          <a-image src="#01-qvd" position="-16 19 -20" rotation="0 37 0" scale="13 7 0"></a-image>
+         
+        <!--VIOLENTOMETRO VIRTUAL-->
+          <!--TITULO-->
+          <a-image src="#02-vv"position="10 19.5 -22" rotation="0 -11 1" scale="12 6 0"
+               ></a-image>
+          <!--BOTON PARA VIOLENTOMETRO-->
+          <a-image id="btn_viol2" src="#btnViolentometro" position="11.5 4 -27" rotation="0 0 0" scale="7 7 1"
+                   event-set__appa="_event:click;_target:#violentometro; visible:true;"
+          ></a-image>
+          <!--VIOLENTOMETRO 3D-->
+          <a-entity id="violentometro" visible="false" repeat="0"
+                  event-set__appa="_event:click;_target:#violentometro;visible:false;">
+               <a-entity gltf-model="#viol" position="5 5.4 -26" rotation="-1 0 " scale="1.2 1.2 1.2" animation-mixer>
+               </a-entity>
+               <a-entity gltf-model="#text" position="12 5.4 -26" rotation="0 -8 0" scale="1.2 1.2 1.2" animation-mixer>
+               </a-entity>
+          </a-entity>
+         
+        <!--INFOGRAFRIAS VICTIMA, VICTIMARIO, AGRESOR-->
+          <!--TITULO-->
+           <a-image src="#03-info" position="24 15 -5"  rotation="0 -90 0" scale="12 6 0">
+           </a-image>
+          <!--BOTÓN VICTIMA-->
+           <a-image id="vict" src="#victima" scale="6.2 7 1" position="26 8.5 -17" rotation="0 -90 0"
+                    event-set__mover="_event:click;position:26 8.5 -17;rotation: 0 -90 0; scale: 6.2 7 1;">
+           </a-image>
+           <a-image id="btn_victima" src="#btnVictima" position="27 3 -18" scale="5 5 1" rotation="0 -90 0"
+                    event-set__mover="_event:click;_target:#vict;position:5 8.5 -8;scale:7.2 8 1;rotation:-1 -50 0">
+           </a-image>
+          
+          <!--BOTON COMPLICE-->
+           <a-image src="#complice" scale="6.2 7 1" position="27 8.5 -7" rotation="0 -90 0"
+                   id="comp" 
+                   event-set__mover="_event:click;position:27 8.5 -7;rotation: 0 -90 0; scale: 6.2 7 1;"           
+           ></a-image>
+           <a-image id="btn_complice" src="#btnComplice" position="27 3 -7" scale="5 5 1" rotation="0 -90 0"
+                   event-set__mover="_event:click;_target:#comp;position:7 8.5 -6;scale:7.2 8 1;rotation:-1 -60 0">
+           </a-image>
+          
+          <!--BOTON AGRESOR-->
+           <a-image src="#agresor" scale="6.2 7 1" position="27 8.5 3" rotation="0 -90 0"
+                   id="agre" 
+                   event-set__mover="_event:click;position:27 8.5 3;rotation: 0 -90 0; scale: 6.2 7 1;"          
+           ></a-image>
+           <a-image id="btn_agresor" src="#btnAgresor" position="27 3 3" scale="5 5 1" rotation="0 -90 0"
+                   event-set__mover="_event:click;_target:#agre;position:8 6 -4;scale:7.2 7 1;"
+           ></a-image>
+          
+        <!--TIPS PARA PREVENIR LA VIOLENCIA DIGITAL-->
+          <!--TITULO-->
+           <a-image src="#04-cc" position="16 18 18"  rotation="0 -145 0" scale="12 6 0">
+           </a-image>
+           <a-image id="auto-cuidado" src="#autocuidado" position="20 11 22" rotation="0 -145 0" scale="12 10 1"
+                    event-set__mover="_event:click;position:20 11 22;rotation:0 -145 0;"
+           ></a-image>
+           <!--BOTON-->
+           <a-image id="btn-tips" src="#btnTips" position="20 3 22" rotation="0 -145 0" scale="6 6 1"
+                    event-set__mover="_event:click;_target:#auto-cuidado;position:10 10 8;rotation:0 -135 0"
+           ></a-image>
+           
+        <!--VIDEO ¿CÓMO DENUNCIARLA-->
+          <!--TITULO-->
+           <a-image src="#05-cd"position="-9 17 22"  rotation="0 -185 5" scale="12 6 0">
+           </a-image>
+          <!--VIDEO-->
+           <a-video src="#pionero2" width="16" height="9" position="-10 10 25" rotation="-1 -190 0">
+			 <!-- Play/Pause -->
+			 <a-image id="videoControls2" src="#play2" position="1 -7 -5" rotation="0 0 0" scale="7 7 1" play-pause2></a-image>
+		   </a-video>
+           
+        <!--VD EN MICHOACÁN-->
+          <!--TITULO-->
+           <a-image src="#06-vdm" position="-25 20 2"  rotation="0 105 0" scale="12 6 0">
+           </a-image>
+          <!--IMAGEN-->
+           <a-image src="#defensoras" position="-26 11 2" rotation="0 105 0" scale="20 12 1"></a-image>
+           
+        <!--FRASE EN EL TECHO-->
+           <a-image src="#frase" position="0 32 0" rotation="65 145 0" scale="15 7 1"></a-image>
+           
+        <!--LINK-->
+           <a-image src="#galeria2" position="-26 3.5 2" rotation="0 105 0"scale="5 5 1" link="href: galeria3.html; tittle: Defensoras"></a-image>
+           
+    </a-scene>
+  </body>
+</html>

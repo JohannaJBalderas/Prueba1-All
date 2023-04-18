@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script>
+		AFRAME.registerComponent('play', {
+			init: function () {
+				var myEl = document.querySelector('#inicio');
+				this.el.addEventListener('click', function () {
+					myEl.components.sound.playSound();
+				});
+			}
+		});
+		AFRAME.registerComponent('stop', {
+			init: function () {
+				var myEl = document.querySelector('#inicio');
+				this.el.addEventListener('click', function () {
+					myEl.components.sound.stopSound();
+				});
+			}
+		});
+	</script>
+  </head>
+  <body>
+    <a-scene inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+        <a-asset>
+           <!--ASSETS IMAGENES-->
+            <!--ESCENARIO-->
+            <img src="img/pared3.jpg" id="pared3">
+            <img src="img/madera1.jpg" id="piso4">
+            <img src="img/pared4.jpg" id="pared4">
+            <!--BOTONES-->
+            <img src="img/botones/btn-iniciar.png" id="iniciar">
+            <img src="img/botones/btn-espPause.png" id="pause3">
+            <img src="img/botones/btn-espPlay.png" id="play3">
+            <!--IMAGENES-->
+            <img src="img/galeria2/frase.png" id="01frase">
+            <img src="img/galeria2/galeria2.png" id="01-dd">
+            <img src="img/galeria2/galeria2.1.png" id="02-dd">
+            <img src="img/galeria2/galeria2.2.png" id="03-dd">
+            <img src="img/galeria2/galeria2.3.png" id="06-dd">
+            <img src="img/galeria2/galeria2.4.png" id="07-dd">
+            <img src="img/galeria2/galeria2.5.png" id="08-dd">
+            <img src="img/galeria2/galeria2.6.png" id="8-dd">
+            <img src="img/galeria2/galeria2.7.png" id="09-dd">
+            <img src="img/galeria2/galeria2.8.png" id="10-dd">
+            <img src="img/galeria2/galeria2.9.png" id="11-dd">
+            <img src="img/galeria2/galeria2.10.png" id="12-dd">
+            <img src="img/galeria2/galeria2.11.png" id="13-dd">
+            <img src="img/galeria2/galeria2.12.png" id="14-dd">
+            <img src="img/galeria2/galeria2.13.png" id="16-dd">
+            <img src="img/galeria2/galeria2.14.png" id="17-dd">
+            <img src="img/galeria2/galeria2.15.png" id="18-dd">
+            <img src="img/galeria2/galeria3_38_dd.png" id="19-dd">
+            <img src="img/galeria2/galeria37_dd.png" id="20-dd">
+            <img src="img/galeria2/8_dd.jpg" id="21-dd">
+            <img src="img/galeria2/39_dd.jpg" id="22-dd">
+            <img src="img/botones/btn-victima.png" id="privacidad">
+            <img src="img/botones/btn-complice.png" id="quees">
+            <img src="img/titulos/06_vdm.png" id="michoacan">
+            <!--TITULO-->
+            <img src="img/galeria2/frase3.png" id="frase3">
+            
+           <!--AUDIO-->
+            <audio src="music/galeria3.mp3" id="prueba"></audio>
+        </a-asset>
+        <!--CAMARA-->
+         <a-entity position="0 4 0" rotation="0 35 0">
+            <a-camera>
+<!--                <a-cursor material="color:#000000"></a-cursor>-->
+                   <a-entity cursor position="0 0 -1" geometry="primitive: sphere; radius: 0.015" material="color:#000; shader:flat; opacity:0.5"></a-entity>
+            </a-camera>
+         </a-entity>
+
+        <!--PLANO Y SKY-->
+<!--         <a-sky material="src:#pared3;repeat:6 25 0" rotation="0 -80 0" radius="35" ></a-sky>-->
+         <a-sky material="src:#pared4;repeat:6 10 0" rotation="0 -80 0" radius="50" ></a-sky>
+         <a-plane position="0 0 0" rotation="-90 0 0" scale="1000 1000 1" 
+                    material="src:#piso4;repeat:100 100 1; shader:flat;">
+         </a-plane>
+         
+        <!--FRASE DE BIENVENIDA-->
+          <a-image src="#01frase" position="-16 14 -20" rotation="0 37 0" scale="25 6.5 0"></a-image>
+          <a-image src="#iniciar" position="-16 10.5 -20" rotation="0 37 0" scale="7 5 1"></a-image>
+          <a-entity id="inicio" sound="src:#prueba; volumen:60; refDistance:60;
+                           roloffFactor:60;">
+             <a-image src="#play3" position="-17 7 -20" rotation="0 37 0" scale="2 2 1" play></a-image>
+             <a-image src="#pause3" position="-16 7 -22" rotation="0 37 0" scale="2 2 1" stop></a-image>
+         </a-entity>
+          
+<!--          <a-image src="#play3" position="-17 7 -20" rotation="0 37 0" scale="2 2 1" play></a-image>
+          <a-image src="#pause3" position="-16 7 -22" rotation="0 37 0" scale="2 2 1" stop></a-image>-->
+          
+        <!--TITULO PARTE 1-->
+          <a-image src="#frase3" position="19.81 19.55 -14.66" rotation="0 -51.9 1" scale="18 6 0"></a-image>
+          <!--CENTRO-->
+          <a-image src="#01-dd" position="23 13.3 -17" rotation="0 -51 1" scale="13 6 0"></a-image>
+          <a-image src="#08-dd" position="25 6 -18" rotation="0 -51 1" scale="12 8 0"></a-image>
+          <!--IZQUIERDA-->
+          <a-image src="#10-dd" position="16 13 -24" rotation="0 -50 1" scale="10 6 0"></a-image>
+          <a-image src="#02-dd" position="16 5.5 -24" rotation="0 -50 1" scale="10 6 0"></a-image>
+          <!--DERECHA-->
+          <a-image src="#07-dd" position="27 13 -8" rotation="0 -68 1" scale="10 6 0"></a-image>
+          <a-image src="#03-dd" position="27 6 -8" rotation="0 -68 1" scale="10 6 0"></a-image>
+          
+        <!--TITULO PARTE 2-->
+          <a-image src="#frase3" position="27.49 22 10.682" rotation="0 -92 0" scale="18 6 0"></a-image>
+          <!--CENTRO-->
+          <a-image src="#11-dd" position="29 6 1" rotation="0 -92 0" scale="10 6 0"></a-image>
+          <a-image src="#8-dd" position="29 13 1" rotation="0 -92 0" scale="10 6 0"></a-image>
+          <!--IZQUIERDA-->
+          <a-image src="#06-dd" position="28 13 10" rotation="0 -105 0" scale="10 6 0"></a-image>
+          <a-image src="#09-dd" position="28 6 10" rotation="0 -105 0" scale="10 6 0"></a-image>
+          <!--DERECHA-->
+          <a-image src="#12-dd" position="24 13 19" rotation="0 -130 0" scale="10 6 0"></a-image>
+          <a-image src="#13-dd" position="24 6 19" rotation="0 -130 0" scale="10 6 0"></a-image>
+        
+        <!--TITULO PARTE 3-->
+          <a-image src="#michoacan" position="-23 22 16" rotation="0 104 0" scale="18 6 0"></a-image>
+          <!--CENTRO-->
+          <a-image src="#14-dd" position="-19 6 14" rotation="0 110 0" scale="10 6 0"></a-image>
+          <a-image src="#16-dd" position="-19 13 14" rotation="0 111 0" scale="10 6 0"></a-image>
+          <!--IZQUIERDA-->
+          <a-image src="#17-dd" position="-14 13 21" rotation="0 135 0" scale="10 6 0"></a-image>
+          <a-image src="#19-dd" position="-14 6 21" rotation="0 135 0" scale="10 6 0"></a-image>
+          <!--DERECHA-->
+          <a-image src="#18-dd" position="-21 13 5" rotation="0 98 0" scale="10 6 0"></a-image>
+          <a-image src="#20-dd" position="-21 6 5" rotation="0 98 0" scale="10 6 0"></a-image>
+        
+        <!--INFOGRAFIAS-->
+          <a-image id="priv" src="#21-dd" position="18 14 37" rotation="0 -156 0" scale="20 20 0" event-set__mover="_event:click;position:26 8.5 -17;rotation: 0 -90 0; scale: 6.2 7 1; event-set__mover=_event:click;position:18 14 37;rotation: 0 -156 0; scale: 20 20 0;"></a-image>
+        <a-image id="btn_privacidas" src="#privacidad" position="18 3 37" scale="4 5 1" rotation="0 -160 0"
+                    event-set__mover="_event:click;_target:#priv;position:12 10 29;scale:20 20 0;rotation:0 -160 0">
+           </a-image>
+          <a-image id="qs" src="#22-dd" position="-6 13 37" rotation="0 176 0" scale="17 19 0" event-set__mover="_event:click;position:-5 13 37;rotation: 0 176 0; scale:17 19 0;"></a-image>
+        <a-image id="btn_que es" src="#quees" position="-6 2.5 37" scale="5 5 1" rotation="0 -175 0"
+                    event-set__mover="_event:click;_target:#qs;position:-3 10 27;scale:17 19 0;rotation:0 170 0">
+           </a-image>
+         
+
+          
+          
+          
+     
+     
+          
+        
+    </a-scene>  
+  </body>
+</html>

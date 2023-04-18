@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="js/animation-mixer.js"> </script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script>
+		AFRAME.registerComponent('play', {
+			init: function () {
+				var myEl = document.querySelector('#esp');
+				this.el.addEventListener('click', function () {
+					myEl.components.sound.playSound();
+				});
+			}
+		});
+		AFRAME.registerComponent('stop', {
+			init: function () {
+				var myEl = document.querySelector('#esp');
+				this.el.addEventListener('click', function () {
+					myEl.components.sound.stopSound();
+				});
+			}
+		});
+	</script>
+   
+    <script>
+		AFRAME.registerComponent('play2', {
+			init: function () {
+				var myEl = document.querySelector('#ing');
+				this.el.addEventListener('click', function () {
+					myEl.components.sound.playSound();
+				});
+			}
+		});
+		AFRAME.registerComponent('stop2', {
+			init: function () {
+				var myEl = document.querySelector('#ing');
+				this.el.addEventListener('click', function () {
+					myEl.components.sound.stopSound();
+				});
+			}
+		});
+	</script>
+	
+  </head>
+  <body>
+    <a-scene inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+    <!--ASSEETS-->
+      <a-assets>
+         <!--Escenario-->
+         <img src="img/streetView.jpg" id="escenario">
+         <!--BOTONES-->
+         <img src="img/titulos/bienvenida5.png" id="welcome">
+         <img src="img/botones/galeria2.png" id="galeria">
+         <img src="img/titulos/entrar2.png" id="entrar">
+         <img src="img/botones/btn-esp.png" id="español">
+         <img src="img/botones/btn-espPlay.png" id="play">
+         <img src="img/botones/btn-espPause.png" id="pause">
+         <img src="img/botones/btn-ing.png" id="ingles">
+         <img src="img/botones/btn-ingPlay.png" id="play2">
+         <img src="img/botones/btn-ingPause.png" id="pause2">
+         <!--MÚSICA-->
+         <audio src="music/index-espa.mp3" id="audio-esp"></audio>
+         <audio src="music/index-ing.mp3" id="audio-ing"></audio>
+         <!--ASSEETS DE MODELOS 3D-->
+         <a-asset-item src="3D/pub.glb" id="girl"></a-asset-item>
+         <a-asset-item src="3D/butterfly1.glb" id="but1"></a-asset-item>
+         <a-asset-item src="3D/butterfly3.glb" id="but3"></a-asset-item>
+         <a-asset-item src="3D/butterfly4.glb" id="but4"></a-asset-item>
+      </a-assets>
+     <!--POSICIÓN CAMARA-->
+      <a-entity position="200 -10 -55" rotation="0 -90 0">
+            <a-camera>
+                 <!--<a-entity cursor position="0 0 -1" geometry="primitive: sphere; radius: 0.009" material="color:#000; shader:flat; opacity:0.5"></a-entity>-->
+                 <a-cursor geometry="primitive: sphere; radius: 0.015" material="color:#000; shader:flat; opacity:0.5"></a-cursor>
+<!--                 <a-entity cursor position="0 0 -1" geometry="primitive: sphere; radius: 0.015" material="color:#000; shader:flat; opacity:0.5"></a-entity>-->
+
+            </a-camera>
+      </a-entity>
+        
+       <!--SKY-->
+       <a-sky material="src:#escenario;"></a-sky>
+       
+       <!--INICIO-BIENVENIDA -->
+        <!--MENSAJE-->
+         <a-image src="#welcome" position="420 40 -51" rotation="0 -90 0" scale="200 100 1"></a-image>
+         <a-image src="#entrar" position="350 -4.17 -52.45" rotation="0 -90 0" scale="120 70 1"></a-image>
+        <!--BOTONES-->
+        <!--AUDIO-->
+         <a-image src="#español" position="320 -13 -86" rotation="0 -90 0" scale="52 45 1"></a-image>
+         <a-entity id="esp" sound="src:#audio-esp; volumen:100; refDistance:120;
+                           roloffFactor:120;">
+             <a-image src="#play" position="320 -43.2 -96.99" rotation="0 -90 0" scale="20 20 1" play></a-image>
+             <a-image src="#pause" position="320 -43.2 -78.39" rotation="0 -90 0" scale="20 20 1" stop></a-image>
+         </a-entity>
+         
+         <a-image src="#ingles" position="320 -13 -24.93" rotation="0 -90 0" scale="52 45 1"></a-image>
+         <a-entity id="ing" sound="src:#audio-ing; volumen: 100;refDistance:120;
+                           roloffFactor:120;">
+             <a-image src="#play2" position="320 -43.2 -31.25" rotation="0 -90 0" scale="20 20 1" play2></a-image>
+             <a-image src="#pause2" position="320 -43.2 -12.75" rotation="0 -90 0" scale="20 20 1" stop2></a-image>
+         </a-entity>
+ 
+      
+       <!--MODELO 3D GIRL -->
+       <a-entity gltf-model="#girl" position="311.3 -110 351.29" rotation="0 -163 0" scale="80 80 80" animation-mixer></a-entity>
+       <!--MODELO 3D MARIPOSAS -->
+       <a-entity gltf-model="#but1" position="311.3 50 351.29" rotation="0 -90 0" scale="0.8 0.8 0.8" animation-mixer
+       ></a-entity>
+       <a-entity gltf-model="#but3" position="270.1901 92.2302 342.9" rotation="0 -100 0" scale="0.2 0.2 0.2" animation-mixer
+            animation="property: object3D.position.x;
+                             to:50 92.2302 342.9;
+                             easing:linear;
+                             dur:5000;
+                             loop:-1;
+                             dir:alternate;"
+       ></a-entity>
+       <a-entity gltf-model="#but4" position="190.5 78.58027 403.091" rotation="0 -90 0" scale="10 10 10" animation-mixer
+             animation="property: object3D.position.x;
+                             to:300 78.58027 403.091;
+                             easing:linear;
+                             dur:5000;
+                             loop:-1;
+                             dir:alternate;"
+       ></a-entity>
+      
+       
+       <!--LINK-->
+       <a-image src="#galeria" position="220.9 54.26 425.90" rotation="0.804 -159 0.964"scale="80 70 1" link="href: galeria2.html; tittle: Galeria"></a-image>
+       
+   
+    </a-scene>
+  </body>
+</html>
